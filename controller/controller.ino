@@ -39,6 +39,11 @@
 #define RX_PW_P5       0x16
 #define FIFO_STATUS    0x17
 
+//Ping define
+#define IRQ            8
+#define CE             9
+#define CSN            10
+
 void setup() {
   // put your setup code here, to run once:
 
