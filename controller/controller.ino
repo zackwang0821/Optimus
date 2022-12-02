@@ -40,13 +40,39 @@
 #define FIFO_STATUS    0x17
 
 //Pin define
+//SCK, MOSI, MISO have been defined in Arduino library
 #define IRQ            8
 #define CE             9
 #define CSN            10
 
-void setup() {
-  // put your setup code here, to run once:
+//Data width define
+#define TX_ADR_WIDTH   5     //Address width are 5 bytes
+#define TX_PLOAD_WIDTH 32    //Data packets of transmit/receive are 32 bytes
 
+//Extension board buttons define
+#define X              analogRead(0)/4
+#define Y              analogRead(1)/4
+#define A              digitalRead(2)
+#define B              digitalRead(3)
+#define C              digitalRead(4)
+#define D              digitalRead(5)
+#define E              digitalRead(6)
+#define F              digitalRead(7)
+#define KEY            digitalRead(8)
+
+byte TX_ADDRESS[TX_ADR_WIDTH] = {0x34, 0x43, 0x10, 0x10, 0x01};
+
+byte tx_buf[TX_PLOAD_WIDTH];
+
+void setup() {
+  pinMode(CE, OUTPUT);
+  pinMode(CSN, OUTPUT);
+  pinMode(MOSI, OUTPUT);  
+  pinMode(MISO, INPUT);
+  pinMode(IRQ, INPUT);
+  pinMode(SCK, OUTPUT);
+  
+  Serial.begin(9600);
 }
 
 void loop() {
